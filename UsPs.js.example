@@ -1,0 +1,18 @@
+// change the file name to UsPs.js And fill the variables
+
+"use strict";
+
+exports.mongo_username = '*****';
+exports.mongo_password = '********';
+exports.mong_dbName = 'health';
+
+exports.healightMail = '*****';
+exports.healighMailPass = '****'
+
+exports.medium = {};
+// exports.medium.clientId = 'f44f22ffsd56edasd14';
+// exports.medium.clientSecret = '1909a5gfdg188efdase13w0ec41456507f6bae8a0f1385294e4';
+// exports.medium.AuthorizationCode = '';
+// exports.medium.redirectUrl = 'https://example.green/stuff/mediumCB';
+exports.medium.pubId = '7652ca2yhl5325';
+exports.medium.token = '23652c25eda921gad'lgkadl;g7c1999a36f405c17d05348bef1838191c0a26'; //copied from medium

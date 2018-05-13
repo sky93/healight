@@ -1,0 +1,82 @@
+=========================
+Initize DataBase
+=========================
+mkdir database
+cd database
+mongod --dbpath . &> /dev/null &
+mongo
+
+use admin
+db.createUser(
+{
+	user: 'admin',
+	pwd: 'M17511752gh*M17511752gh',
+	roles: [ {role: 'root' , db:'admin'},
+			 {role: 'userAdminAnyDatabase' , db:'admin'} ]
+});
+
+Ctrl + D; fg; Ctrl + C;
+
+mongod --auth --port 27017 --dbpath=. &> /dev/null &
+mongo --port 27017 -u "admin" -p "M17511752gh*M17511752gh" --authenticationDatabase "admin"
+
+use health
+db.createUser(
+{
+	user: 'mlibre',
+	pwd: 'M17511752gh*M17511752gh',
+	roles: [ {role: 'readWrite' , db:'health'} ]
+});
+
+Ctrl + D; fg; Ctrl + C;
+
+==========================
+indexing DataBase
+==========================
+indexing:
+db.encyclopedia_medicine.createIndex( {parent: 1} )
+db.users.createIndex( {username: 1} )
+db.users.createIndex( {email: 1} )
+
+=========================
+Running DataBase
+=========================
+mongod --auth --port 27017 --dbpath=. &> /dev/null &
+mongo --port 27017 -u "mlibre" -p "M17511752gh*M17511752gh" --authenticationDatabase "health"
+
+==========================
+Backup & Restore
+==========================
+Backup:
+mongodump --host localhost:27017 -d health -u mlibre -o projectStuff/db_dump/
+mongodump --host localhost:27017 -d health -u mlibre -p password -o projectStuff/db_dump/
+-------------------------
+Restore:
+Delete collections
+mongorestore -v -h localhost:27017 -d health -u mlibre -p "M17511752gh*M17511752gh" backups/db/DBbak-2018-05-02-04\:19\:07/health/
+
+==========================
+Delete collections
+==========================
+mongo --port 27017 -u "mlibre" -p "M17511752gh*M17511752gh" --authenticationDatabase "health"
+use health
+show collections
+db.encyclopedia_medicine.drop()
+db.encyclopedia_fruits.drop()
+db.encyclopedia_plants.drop()
+db.encyclopedia_drinks.drop();
+db.encyclopedia_edibles.drop()
+db.encyclopedia_sickness.drop()
+db.encyclopedia_lifestyle.drop()
+db.encyclopedia_genetic.drop()
+db.encyclopedia_other.drop()
+db.users.drop()
+db.site.drop()
+db.draft.drop()
+db.social_media.drop()
+
+==========================
+Restore, Upload To Mlab
+==========================
+mongorestore -v -h localhost:27017 -d health -u mlibre -p "M17511752gh*M17511752gh" health/projectStuff/db_backups/DBbak-17-08-25-06\:23\:54/health/
+mongorestore -v -h ds157298.mlab.com:57298 -d health -u mlibre -p password projectStuff/db_dump/health/

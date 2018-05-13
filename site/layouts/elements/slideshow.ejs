@@ -1,0 +1,27 @@
+<!-- slideshow -->
+<div id="slideshow" class="slideshow text_good_black">
+    <% if(typeof slideshows != 'undefined')
+    {
+        slideshows.forEach(function(el , i)
+        {%>
+        <a href="<%=el.url%>">
+            <img id="slide_show_image_<%=i%>" class="img-fluid m-auto" src="/<%=el.image_add%>" alt="<%=el.image_alt%>"
+                <%if (i != 0){%>
+                style="display:none"
+                <%}%>
+            >
+        </a>
+    <% });%>
+    <div id="bottom_slideshow_part" class="slideshow_B rtlDir">
+        <ul class="FlexCen">
+            <div href="<%=slideshows[0].url%>" class="slideshow_AS text-center"><%= slideshows[0].title %></div>
+            <% for(var i = 1 ; i < Object.keys(slideshows).length ; i++)
+            {
+                %><div class="text-center"><%= slideshows[i].title %></div><%
+            }
+            %>
+        </ul>
+    </div>
+    <%}%>
+</div>
+<!-- slideshow end -->
