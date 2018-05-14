@@ -1,6 +1,6 @@
 "use strict";
 
-var mongo = require( consV.methods.db.main);
+let DBProfile = require( consV.methods.db.profile );
 let middlewares = require( consV.methods.middlewares);
 let express = require("express");
 var async = require('async');
@@ -23,10 +23,13 @@ router.route('/')
 		res.send( consV.codes.lackOfInformation.toString() );
 		return;
    }
-	try
+	DBProfile.userInfoByEmOrUN(req.body.emUs , req.body.password, function (err, user)
 	{
-		let user = await mongo.userInfoByEmOrUN(req.body.emUs , req.body.password);
-		if( user == null )
+		if(err)
+		{
+			res.send( consV.codes.db.Error.toString() );
+		}
+		else if( user == null )
 		{
 			res.send( consV.codes.db.docNotFound.toString() );
 		}
@@ -37,11 +40,7 @@ router.route('/')
 
 			res.send( consV.codes.db.success.toString() );
 		}
-	}
-	catch (error)
-	{
-		res.send( consV.codes.db.Error.toString() );
-	}
+	});
 });
 
 module.exports = router;

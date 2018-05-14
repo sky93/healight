@@ -1,6 +1,6 @@
 "use strict";
 
-let DBMain = require( consV.methods.db.main);
+let DBProfile = require( consV.methods.db.profile );
 let express = require("express");
 let router = express.Router({mergeParams: true});
 
@@ -27,7 +27,7 @@ router.route('/')
 			formVars[key] = false;
 		}
 	});
-	DBMain.setUserPerm(formVars.nodeId, formVars, function(err , result)
+	DBProfile.setUserPerm(formVars.nodeId, formVars, function(err , result)
 	{
 		if(err)
 		{

@@ -1,8 +1,9 @@
 "use strict";
 
 let DBMain = require( consV.methods.db.main );
-let DBRelatedP = require(consV.methods.db.relatedP);
-let DBArticles = require( consV.methods.db.articles);
+let DBRelatedP = require( consV.methods.db.relatedP );
+let DBArticles = require( consV.methods.db.articles );
+let DBProfile = require( consV.methods.db.profile );
 let space = require( consV.methods.space );
 let ObjectID = require('mongodb').ObjectID;
 let async = require('async');
@@ -11,7 +12,7 @@ let hashes = require('jshashes');
 
 exports.createColls = async function createColls()
 {
-	DBMain.GetConn(async function(db)
+	DBMain.GetConnAsync(async function(db)
 	{	
 		let collList = await db.listCollections().toArray();
 		let collNames = [];
@@ -30,7 +31,7 @@ exports.createColls = async function createColls()
 
 exports.createRoots = function createRoots()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc , function(el , index , callB)
 		{
@@ -102,7 +103,7 @@ exports.createRoots = function createRoots()
 
 exports.createBasicDocuments = function createBasicDocuments()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		// slideshow
 		let sample =
@@ -258,7 +259,7 @@ exports.createBasicDocuments = function createBasicDocuments()
 exports.signUpAdmin = function signUpAdmin(username, email, password, Lang)
 {
 	let hashPass = new hashes.SHA256().hex(password)
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		let collection = db.collection('users');
 		collection.findOneAndUpdate
@@ -309,7 +310,7 @@ exports.signUpAdmin = function signUpAdmin(username, email, password, Lang)
 
 exports.addAdminAsOwnerToAllArts = function addAdminAsOwnerToAllArts()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.allEncsColls , function(el , index , callB)
 		{
@@ -421,7 +422,7 @@ exports.deleteOrphanFolders = function deleteOrphanFolders()
 
 exports.deleteDeletedResources = function deleteDeletedResources()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		let allPossibleResources = [...Array(200).keys()];
 		async.waterfall
@@ -494,13 +495,13 @@ exports.deleteDeletedResources = function deleteDeletedResources()
 
 exports.deleteDeletedUsers = function deleteDeletedUsers()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.waterfall
 		([
 			function (callback)
 			{
-				DBMain.usersList(function(err , users)
+				DBProfile.usersList(function(err , users)
 				{
 					let usersId = [];
 					users.forEach(element => {
@@ -563,7 +564,7 @@ exports.deleteDeletedUsers = function deleteDeletedUsers()
 
 exports.deleteDeletedUsersFromRejected_by_usersField = function deleteDeletedUsersFromRejected_by_usersField(usersId, cbf)
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.EncsColls , function(el , index , callback)
 		{
@@ -630,7 +631,7 @@ exports.deleteDeletedUsersFromRejected_by_usersField = function deleteDeletedUse
 
 exports.allResources = function allResources(cbf)
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		let collection = db.collection("site");
 		collection.findOne({"_id": "resources"} , function (err, resDoc)
@@ -649,7 +650,7 @@ exports.allResources = function allResources(cbf)
 exports.artilcesFolders = function artilcesFolders(cbf)
 {
 	let spaceFolderNameList = [];
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.allEncsColls , function(el , index , callback)
 		{
@@ -760,7 +761,7 @@ exports.deltedDeltedNonArtTelArts = function deltedDeltedNonArtTelArts()
 
 exports.lostArticles = function lostArticles()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.EncsColls , function(el , index , callback)
 		{
@@ -816,7 +817,7 @@ exports.lostArticles = function lostArticles()
 
 exports.checkAllLinksInArts = function checkAllLinksInArts()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.EncsColls , function(el , index , callback)
 		{
@@ -893,7 +894,7 @@ exports.checkAllLinksInArts = function checkAllLinksInArts()
 
 exports.createLegInfoNode = function createLegInfoNode(Lang)
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		let collection = db.collection(consV.database.site.CollName);
 		let tags = "tags." + Lang;
@@ -929,7 +930,7 @@ exports.createLegInfoNode = function createLegInfoNode(Lang)
 
 exports.customUpdateMany = function customUpdateMany()
 {
-	DBMain.GetConn(function(db)
+	DBMain.GetConnAsync(function(db)
 	{
 		async.forEachOf(consV.database.enc.allEncsColls , function(el , index , callB)
 		{

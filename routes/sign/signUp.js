@@ -1,6 +1,6 @@
 "use strict";
 
-var mongo = require( consV.methods.db.main);
+let DBProfile = require( consV.methods.db.profile);
 let middlewares = require( consV.methods.middlewares);
 let express = require("express");
 var async = require('async');
@@ -27,7 +27,7 @@ router.route('/')
 	([
 		function (callback)
 		{
-			mongo.emailInf(req.body.email , function(err, user)
+			DBProfile.emailInf(req.body.email , function(err, user)
 			{
 				if( err )
 				{
@@ -45,7 +45,7 @@ router.route('/')
 		},
 		function (callback)
 		{
-			mongo.signUp(req.body.email , req.body.password , res.locals.lang , function (err, user)
+			DBProfile.signUp(req.body.email , req.body.password , res.locals.lang , function (err, user)
 			{
 					if(err)
 					{

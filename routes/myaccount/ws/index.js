@@ -15,4 +15,5 @@ require('fs').readdirSync(__dirname).forEach(function (file)
 		router.use('/' + file , require('./' + file));
 	}
 });
+
 module.exports = router;

@@ -6,7 +6,7 @@ let async = require('async');
 
 function telNonArts(cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(consV.database.social_media.CollName);
 
@@ -27,7 +27,7 @@ function telNonArts(cbf)
 
 function telNonArtDel(nodeId, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(consV.database.social_media.CollName);
 		collection.findOneAndUpdate
@@ -57,7 +57,7 @@ function SMNonArtAdd(nodeId, cbf)
 	{
 		return cbf(true);
 	}	
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(consV.database.social_media.CollName);
 		collection.findOneAndUpdate

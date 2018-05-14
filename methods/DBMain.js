@@ -44,7 +44,7 @@ exports.db_connect = async function db_connect(cbf)
 	});
 }
 
-exports.GetConn = function GetConn(cb)
+exports.GetConnAsync = function GetConnAsync(cb)
 {
 	if(db)
 	{
@@ -59,151 +59,9 @@ exports.GetConn = function GetConn(cb)
 	}
 }
 
-exports.signUp = function signUp(email , password , Lang , cbf)
+exports.GetConnSync = function GetConnSync()
 {
-	let collection = db.collection('users');
-	collection.insertOne
-	({
-		"username" : null,
-		"password" : password,
-		"email" : email,
-		"name" : null,
-		"family" : null,
-		"Lang": Lang,
-		"date" : new Date(),
-		"permissions" :
-		{
-			"panel" : false,
-			"create_art" : false,
-			"place_art": false,
-			"update_art": false,
-			"delete_art": false,
-			"approve_art": false,
-			"add_res_art": false,
-			"enc_tree": false,
-			"pages_stuff": false,
-			"admin_stuff": false,
-			"helpers": false,
-			"space": false
-		}
-	},
-	function(err , result)
-	{
-		if(err)
-		{
-			console.error( new Error(`#Mongo #FIXME. #Error. message: ${err}`.red) );
-			cbf(err, consV.codes.db.Error);
-		}
-		else
-		{
-			cbf(null, result.ops[0]);
-		}
-	});
-}
-
-exports.usersList = function usersList(cbf)
-{
-	let collection = db.collection('users');
-	collection.find().toArray(function(err , users)
-	{
-		if(err)
-		{
-			console.error( new Error(`#Mongo #FIXME. #Error. message: ${err}`.red) );
-		}
-		else if(users == null)
-		{
-			console.log("#Mongo. Can not find user document.");
-		}
-		cbf(err, users);
-	});
-}
-
-exports.userInfoByEmOrUN = async function userInfoByEmOrUN(emUs, password)
-{
-	let collection = db.collection('users');
-	let user = await collection.findOne(
-	{
-		$or: [
-			{
-				"email" : emUs,
-				"password": password
-			},
-			{
-				"username": emUs,
-				"password": password
-			}
-		]
-	});
-	return user;
-}
-
-exports.deleteUser = function deleteUser(nodeId , cbf)
-{
-	let collection = db.collection('users');
-	let node_id = new ObjectID (nodeId);
-
-	collection.findOneAndDelete
-	({
-		_id: node_id
-	},
-	function(err, res)
-	{
-		if(err)
-		{
-			console.error( new Error(`#Mongo #FIXME. #Error. message: ${err}`.red) );
-		}
-		else
-		{
-			console.log("#Mongo. user Deleted.".yellow);
-		}
-		cbf(err, res.value);
-	});
-}
-
-exports.setUserPerm = function setUserPerm(nodeId, perms, cbf)
-{
-	delete perms.nodeId;	
-	nodeId = new ObjectID (nodeId);	
-	let collection = db.collection('users');
-	collection.findOneAndUpdate
-	({
-		'_id' : nodeId
-	},
-	{
-		$set:
-		{
-			'permissions': perms
-		}
-	},
-	function(err , user)
-	{
-		if(err)
-		{
-			console.error( new Error(`#Mongo #FIXME. #Error. message: ${err}`.red) );
-		}
-		else if(user == null)
-		{
-			console.log("#Mongo. Can not find user document.");
-		}
-		cbf(err, user);
-	});
-}
-
-exports.emailInf = function emailInf(email , cbf)
-{
-	let collection = db.collection('users');
-	collection.findOne( { "email" : email } , function(err , user)
-	{
-		if(err)
-		{
-			console.error( new Error(`#Mongo #FIXME. #Error. message: ${err}`.red) );
-		}
-		else if(user == null)
-		{
-			console.log("#Mongo. Can not find email");
-		}
-		cbf(err, user);
-	});
+	return db;
 }
 
 exports.slideshowInf = function slideshowInf(page, Lang, cbf)

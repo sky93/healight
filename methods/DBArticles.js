@@ -27,7 +27,7 @@ exports.create_edit_draft_art = function create_edit_draft_art(formVars, userId,
 	license.type = formVars.formArtResLicType;
 	license.text = formVars.formArtResLic;
 
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(consV.database.draft.CollName);
 		let tagsPath = "tags." + formVars.formArtLang;
@@ -95,7 +95,7 @@ exports.edit_art_by_spaceFName = function edit_art_by_spaceFName(formVars, userI
 	license.type = formVars.formArtResLicType;
 	license.text = formVars.formArtResLic;
 
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		exports.art_coll_by_spaceFName(formVars.spaceFolderName , function(err, coll)
 		{
@@ -147,7 +147,7 @@ exports.edit_art_by_spaceFName = function edit_art_by_spaceFName(formVars, userI
 
 exports.edit_place_art_by_ID = function edit_place_art_by_ID(nodeId, parentNodeId, URLName, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		database.node_coll_by_Id(nodeId , function(err, coll)
 		{
@@ -218,7 +218,7 @@ exports.check_editPerm_by_spaceFName = function check_editPerm_by_spaceFName(use
 
 exports.check_placePerm = function check_placePerm(user_id, art_id, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		database.nodeInfCObj(art_id, function(err , art)
 		{
@@ -240,7 +240,7 @@ exports.check_placePerm = function check_placePerm(user_id, art_id, cbf)
 
 exports.AArt = function AArt(nodeId, nodeEnc, user_Id, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{		
 		let collection = db.collection(nodeEnc);
 		let node_id = new ObjectID (nodeId);
@@ -277,7 +277,7 @@ exports.AArt = function AArt(nodeId, nodeEnc, user_Id, cbf)
 
 exports.RArt = function RArt(nodeId, nodeEnc, user_Id, RAText, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{		
 		let collection = db.collection(nodeEnc);
 		let node_id = new ObjectID (nodeId);
@@ -314,7 +314,7 @@ exports.RArt = function RArt(nodeId, nodeEnc, user_Id, RAText, cbf)
 
 exports.NOArt = function NOArt(nodeId, nodeEnc, user_Id, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{		
 		let collection = db.collection(nodeEnc);
 		let node_id = new ObjectID (nodeId);
@@ -352,7 +352,7 @@ exports.NOArt = function NOArt(nodeId, nodeEnc, user_Id, cbf)
 exports.replace_art = function replace_art(Enc, nodeId, parentNodeId, URLName, cbf)
 {
 	var old_coll = null;
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		async.waterfall
 		([
@@ -432,7 +432,7 @@ exports.replace_art = function replace_art(Enc, nodeId, parentNodeId, URLName, c
 
 exports.drafts = function drafts(cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection('draft');
 		collection.find().toArray(function(err , draftsDoc)
@@ -448,7 +448,7 @@ exports.drafts = function drafts(cbf)
 
 exports.article_approves = function article_approves(nodeId, nodeEnc, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(nodeEnc);
 		collection.findOne( { "_id" : nodeId } , function(err , art)
@@ -491,7 +491,7 @@ exports.article_approves = function article_approves(nodeId, nodeEnc, cbf)
 
 exports.article_resources_WUsersAResInfo = function article_resources_WUsersAResInfo(nodeId, nodeEnc, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(nodeEnc);
 		collection.findOne( { "_id" : nodeId } , function(err , art)
@@ -552,7 +552,7 @@ exports.article_resources_WUsersAResInfo = function article_resources_WUsersARes
 
 exports.addEditArtResources = function addEditArtResources(nodeId, nodeEnc, userId, resources, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		let collection = db.collection(nodeEnc);
 		let node_id = new ObjectID (nodeId);
@@ -592,7 +592,7 @@ exports.addEditArtResources = function addEditArtResources(nodeId, nodeEnc, user
 
 exports.delArtResources = function delArtResources(nodeId, nodeEnc, userId, resId, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		async.series
 		([
@@ -673,7 +673,7 @@ exports.delArtResources = function delArtResources(nodeId, nodeEnc, userId, resI
 
 exports.article_by_spaceFName = function article_by_spaceFName(spaceFolderName, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		exports.art_coll_by_spaceFName(spaceFolderName , function(err, coll)
 		{
@@ -702,7 +702,7 @@ exports.article_by_spaceFName = function article_by_spaceFName(spaceFolderName, 
 
 exports.art_coll_by_spaceFName = function art_coll_by_spaceFName(spaceFolderName, cbf)
 {
-	database.GetConn(function(db)
+	database.GetConnAsync(function(db)
 	{
 		var coll = null;
 		async.forEachOf(consV.database.enc.allEncsColls , function(el , index , callback)

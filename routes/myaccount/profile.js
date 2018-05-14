@@ -1,17 +1,19 @@
 "use strict";
 
-var mongo = require( consV.methods.db.main);
+let DBProfile = require( consV.methods.db.profile );
 let middlewares = require( consV.methods.middlewares);
 let express = require("express");
 var async = require('async');
 var router = express.Router({mergeParams: true});
 
 router.route('/')
-.get(function(req , res)
+.get(async function(req , res)
 {
-	let title = "هیلایت. پروفایل شخصی";		
+	let user = await DBProfile.userInfoById(req.session.user._id);		
+	let title = "هیلایت. پروفایل شخصی";
 	res.render("myaccount/profile" ,
 	{
+		user: user,
 		title: title
 	});
 });

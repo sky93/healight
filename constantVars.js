@@ -217,6 +217,7 @@ pages.panel.adminStuff.permList_WA = pages.panel.adminStuff.home + "/WS/permList
 pages.panel.adminStuff.delUser_WA = pages.panel.adminStuff.home + "/WS/delUser_WA";
 pages.panel.adminStuff.addEditResources = pages.panel.adminStuff.home + "/WS/addEditResources";
 pages.panel.adminStuff.delResources = pages.panel.adminStuff.home + "/WS/delResources";
+pages.myaccount.editProfile_ws = "/myaccount/ws/editProfile_ws";
 
 exports.webApi = webApi;
 /**************************** Layouts ****************************/
@@ -318,6 +319,8 @@ js.os = {};
 js.os.temperament = '/js/JS/pages/online_services/temperament.js';
 js.encyclopedia = {};
 js.encyclopedia.sidebar = '/js/JS/pages/encyclopedia/sidebar.js';
+js.myaccount = {};
+js.myaccount.profile = '/js/JS/pages/myaccount/profile.js';
 js.panel = {};
 js.panel.main = '/js/JS/pages/panel/panel.js';
 js.panel.sidebar = '/js/JS/pages/panel/sidebar.js';
@@ -382,6 +385,7 @@ let methods = {};
 
 methods.db = {};
 methods.db.main = rootPath + '/methods/DBMain.js';
+methods.db.profile = rootPath + '/methods/DBProfile.js';
 methods.db.articles = rootPath + '/methods/DBArticles.js';
 methods.db.relatedP = rootPath + '/methods/DBRelatedP.js';
 methods.middlewares = rootPath + '/methods/middlewares.js';
