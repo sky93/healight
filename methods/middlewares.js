@@ -334,7 +334,8 @@ function SpPIm(req , res , next)
 {
 	let crypto = require('crypto');
 	res.locals.profileImage = 'https://www.gravatar.com/avatar/' +
-	crypto.createHash('md5').update(req.session.user.email).digest('hex');
+	crypto.createHash('md5').update(req.session.user.email).digest('hex')
+	+ '?s=500';
 	next();
 }
 

@@ -11957,8 +11957,6 @@ h2.title {
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.3); }
 
-.modal .modal-dialog {
-  margin-top: 100px; }
   .modal .modal-dialog.modal-login {
 	 width: 360px; }
 	 .modal .modal-dialog.modal-login .modal-header .close {

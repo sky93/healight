@@ -3,11 +3,11 @@ pageDes :"هیلایت . پروفایل"})%>
 <body id="materialDashboard" class="">
 	<%- include( consV.layouts.nodeJsObToClientJsOb , {varName: "altPage" , varValue: altPage })%>
 	<%- include( consV.layouts.nodeJsObToClientJsOb , {varName: "lang" , varValue: lang })%>
-	<%- include( consV.layouts.mmodal ) %>
 	<div class="wrapper">
 		<%- include(consV.layouts.myaccount.sidebar , {active: 'profile'}) %>
 		<div class="main-panel">
 			<%- include(consV.layouts.myaccount.navbar , {pageText: "پروفایل"}) %>
+			<%- include( consV.layouts.mmodal ) %>
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
@@ -15,7 +15,7 @@ pageDes :"هیلایت . پروفایل"})%>
 							<div class="card">
 								<div class="card-header card-header-primary">
 									<h4 id="editProfile" class="card-title">ویرایش پروفایل</h4>
-									<p class="card-category">Complete your profile</p>
+									<p class="card-category">تکمیل پروفایل</p>
 								</div>
 								<div id="editProfileCardBody" class="card-body">
 									<form id="profileForm" method="post" action="<%='/' + lang + consV.pages.myaccount.editProfile_ws%>"
@@ -64,9 +64,9 @@ pageDes :"هیلایت . پروفایل"})%>
 						</div>
 						<div class="col-md-4">
 							<div class="card card-profile">
-								<div class="card=avatar">
+								<div class="card-avatar">
 									<a href="#">
-										<img class="img" src="#"/>
+										<img class="img" src="<%=profileImage%>"/>
 									</a>
 								</div>
 								<div class="card-body">
