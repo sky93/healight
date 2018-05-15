@@ -156,7 +156,7 @@ async function startBot()
 	firstArt.content[lang] = firstArt.content[lang] + HTMLArtUrll;
 
 	// Post story/art
-	request({
+	await request({
 		method: "POST",
 		url: `https://api.medium.com/v1/publications/${ups.medium.pubId[lang]}/posts`,
 		json: true,
