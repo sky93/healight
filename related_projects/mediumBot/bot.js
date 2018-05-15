@@ -139,13 +139,14 @@ async function startBot()
 	}
 	
 	// Customize art
+	firstArt.content[lang] = firstArt.content[lang].replace(/\/articles\//g , 'https://' + consV.host.domain + '/articles/');
 	let HTMLArtUrll = `<a href="${firstArtUrl}">برای مطالعه ی کامل مقاله اینجا کلیک کنید</a>`;
-	firstArt.content.fa = firstArt.content.fa + HTMLArtUrll;
+	firstArt.content[lang] = firstArt.content[lang] + HTMLArtUrll;
 
 	// Post story/art
 	request({
 		method: "POST",
-		url: `https://api.medium.com/v1/publications/${ups.medium.pubId}/posts`,
+		url: `https://api.medium.com/v1/publications/${ups.medium.pubId[lang]}/posts`,
 		json: true,
 		headers:
 		{
@@ -153,10 +154,10 @@ async function startBot()
 		},
 		body:
 		{
-			title: firstArt.treeTitle.fa,
+			title: firstArt.treeTitle[lang],
 			notifyFollowers: true,
 			contentFormat: medium.PostContentFormat.HTML,
-			content: firstArt.content.fa,
+			content: firstArt.content[lang],
 			publishStatus: medium.PostPublishStatus[publishMod]
 		}
 	});
@@ -226,7 +227,7 @@ async function url_by_NodeId(node_id , collection)
 			FC_counter--;
 			if(FC_counter == 0)
 			{
-				url.push('https://' + consV.host.domain + '/fa' + '/encyclopedia');
+				url.push('https://' + consV.host.domain + '/' + lang + '/encyclopedia');
 				url.reverse();
 				url = url.join('/');
 			}
