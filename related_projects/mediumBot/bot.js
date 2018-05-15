@@ -50,7 +50,7 @@ async function startBot()
 	// Fetch Non Arts
 	try
 	{
-		let collection = db.collection('social_media');
+		let collection = await db.collection('social_media');
 		let node = await collection.findOne( { "_id" : 'non_arts' });	
 		if(node == null)
 		{
@@ -68,7 +68,7 @@ async function startBot()
 	// Fecth published arts
 	try
 	{
-		let collection = db.collection('social_media');
+		let collection = await db.collection('social_media');
 		let results = await collection.findOne( { "_id" : 'medium' });	
 		if(results == null)
 		{
@@ -79,7 +79,6 @@ async function startBot()
 			for (let el of Object.keys(results.published_art[lang]))
 			{
 				non_art_list = non_art_list.concat(el);
-				
 			}
 			for(let i = 0 ; i < non_art_list.length ; i++)
 			{
@@ -98,12 +97,25 @@ async function startBot()
 		try
 		{
 			let collection = await db.collection(el);
+			let path = 'content.' + lang;
 			let res = await collection.findOne
 			({
-				'_id':
-				{
-					$nin: non_art_list,
-				}
+				$and:
+				[
+					{
+						'_id':
+						{
+							$nin: non_art_list,
+						}
+					},
+					{
+						[path]: 
+						{
+							$ne: null
+						}
+					}
+
+				]
 			});
 			if(res == null)
 			{
@@ -144,7 +156,7 @@ async function startBot()
 	firstArt.content[lang] = firstArt.content[lang] + HTMLArtUrll;
 
 	// Post story/art
-	request({
+	await request({
 		method: "POST",
 		url: `https://api.medium.com/v1/publications/${ups.medium.pubId[lang]}/posts`,
 		json: true,
@@ -163,11 +175,11 @@ async function startBot()
 	});
 
 	// add publeshed art
-	let collection = db.collection('social_media');
+	let collection = await db.collection('social_media');
 	let results = await collection.findOne( { "_id" : 'medium' });
 	
 	let path = 'published_art.' + lang + '.' + firstArt._id.valueOf().toString();
-	let result = collection.findOneAndUpdate
+	let err, result = await collection.findOneAndUpdate
 	({ "_id" : 'medium' },
 	{
 		$set:
@@ -177,7 +189,7 @@ async function startBot()
 	});
 	
 	DbConn.close();
-	console.log("#Done :)".green);		
+	console.log("#Done :)".green);
 }
 
 async function db_connect()
@@ -218,7 +230,7 @@ async function url_by_NodeId(node_id , collection)
 			else if(node)
 			{
 				url.push(node.URLName);				
-				if(node._id.valueOf().toString() != root_id_by_coll_name(collection))
+				if(node._id.valueOf().toString() != await root_id_by_coll_name(collection))
 				{
 					FC_counter++;
 					await rec(node.parent);
@@ -299,14 +311,14 @@ async function node_coll_by_Id(nodeId)
 	let node_id = null;
 	node_id = new ObjectID (nodeId);
 	let coll = null;
-	for ( let key of Object.keys(consV.database.allColls ))
+	for ( let key of Object.keys(consV.database.allColls) )
 	{
 		el = consV.database.allColls[key];
-		let collection = db.collection(el);
+		let collection = await db.collection(el);
 		let art = await collection.findOne( { "_id" : node_id } );
 		if(art)
 		{
-			coll = consV.database.allColls[index];
+			coll = consV.database.allColls[key];
 		}
 	}
 	return coll;
@@ -320,7 +332,7 @@ async function resources()
 	return resources;
 }
 
-function root_id_by_coll_name(coll_name)
+async function root_id_by_coll_name(coll_name)
 {
 	let res = null;
 	Object.keys(consV.database.enc).forEach(async (element) => {
