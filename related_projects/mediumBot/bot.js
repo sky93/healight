@@ -156,7 +156,7 @@ async function startBot()
 	firstArt.content[lang] = firstArt.content[lang] + HTMLArtUrll;
 
 	// Post story/art
-	await request({
+	request({
 		method: "POST",
 		url: `https://api.medium.com/v1/publications/${ups.medium.pubId[lang]}/posts`,
 		json: true,
@@ -257,7 +257,7 @@ async function article_resources_WUsersAResInfo(nodeId, nodeEnc)
 {
 	try
 	{
-		let collection = db.collection(nodeEnc);
+		let collection = await db.collection(nodeEnc);
 		let art = await collection.findOne( { "_id" : nodeId });
 		let users = {};
 		for (let key of Object.keys(art.resources))
@@ -265,7 +265,7 @@ async function article_resources_WUsersAResInfo(nodeId, nodeEnc)
 			let value = art.resources[key];
 			for (let k of Object.keys(value.content_user))
 			{
-				let user = nodeInfCObj(k);
+				let user = await nodeInfCObj(k);
 				if(user == null)
 				{
 					console.error( new Error(`#article. #article_resources_WUsersAResInfo function. user not found. message: ${err}`.red) );	
@@ -296,8 +296,8 @@ async function nodeInfCObj(nodeId)
 	{
 		return null;
 	}
-	let collection = db.collection(coll);
 	let node_id = new ObjectID (nodeId);
+	let collection = await db.collection(coll);
 	let nod = await collection.findOne( { "_id" : node_id });
 	if(nod == null)
 	{
