@@ -10,6 +10,8 @@ let mongoClient = mongodb.MongoClient;
 let db;
 let DbConn;
 let lang = 'fa';
+let publishMod = 'DRAFT';
+
 // let client = new medium.MediumClient
 // ({
 //   clientId: ups.medium.clientId,
@@ -155,7 +157,7 @@ async function startBot()
 			notifyFollowers: true,
 			contentFormat: medium.PostContentFormat.HTML,
 			content: firstArt.content.fa,
-			publishStatus: medium.PostPublishStatus.DRAFT
+			publishStatus: medium.PostPublishStatus[publishMod]
 		}
 	});
 
