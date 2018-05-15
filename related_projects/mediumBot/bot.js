@@ -9,7 +9,7 @@ let ObjectID = require('mongodb').ObjectID;
 let mongoClient = mongodb.MongoClient;
 let db;
 let DbConn;
-
+let lang = 'fa';
 // let client = new medium.MediumClient
 // ({
 //   clientId: ups.medium.clientId,
@@ -73,8 +73,12 @@ async function startBot()
 			console.log("#Mongo. Can not find node document".yellow);
 		}
 		else
-		{
-			non_art_list = non_art_list.concat(Object.keys(results.published_art));
+		{			
+			for (let el of Object.keys(results.published_art[lang]))
+			{
+				non_art_list = non_art_list.concat(el);
+				
+			}
 			for(let i = 0 ; i < non_art_list.length ; i++)
 			{
 				non_art_list[i] = new ObjectID (non_art_list[i]);
@@ -151,9 +155,24 @@ async function startBot()
 			notifyFollowers: true,
 			contentFormat: medium.PostContentFormat.HTML,
 			content: firstArt.content.fa,
-			publishStatus: medium.PostPublishStatus.PUBLIC
+			publishStatus: medium.PostPublishStatus.DRAFT
 		}
-	});	
+	});
+
+	// add publeshed art
+	let collection = db.collection('social_media');
+	let results = await collection.findOne( { "_id" : 'medium' });
+	
+	let path = 'published_art.' + lang + '.' + firstArt._id.valueOf().toString();
+	let result = collection.findOneAndUpdate
+	({ "_id" : 'medium' },
+	{
+		$set:
+		{
+			[path]: {}
+		}
+	});
+	
 	DbConn.close();
 	console.log("#Done :)".green);		
 }
@@ -177,7 +196,7 @@ async function db_connect()
 
 async function url_by_NodeId(node_id , collection)
 {
-	let coll = db.collection(collection);
+	let coll = await db.collection(collection);
 	let callbackCalled = false;
 	let url = [];
 
@@ -199,7 +218,7 @@ async function url_by_NodeId(node_id , collection)
 				if(node._id.valueOf().toString() != root_id_by_coll_name(collection))
 				{
 					FC_counter++;
-					rec(node.parent);
+					await rec(node.parent);
 				}
 			}
 			FC_counter--;

@@ -205,7 +205,7 @@ exports.createBasicDocuments = function createBasicDocuments()
 		sample =
 		{
 			"_id": 'non_arts',
-			"list": []
+			"list": ['397e41c11ed051383873ec50']
 		}
 		collection.findOneAndUpdate
 		({
@@ -229,9 +229,10 @@ exports.createBasicDocuments = function createBasicDocuments()
 		sample =
 		{
 			'_id': 'medium',
-			"published_art" :
+			"published_art.fa" :
 			{
-				"397e4bc11ed051383873ec50" : {}
+				"397e41c11ed051383873ec50" : {},
+				"397e41c11ed051383873ec51" : {}
 		  	}
 		}
 		collection.findOneAndUpdate

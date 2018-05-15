@@ -31,7 +31,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Medium Bot",
-			"program": "${workspaceRoot}/realted_projects/mediumBot/bot.js",
+			"program": "${workspaceRoot}/related_projects/mediumBot/bot.js",
 			"cwd": "${workspaceRoot}",
 			"outFiles": []
 		},

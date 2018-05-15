@@ -188,6 +188,6 @@ crontab -e
 @hourly echo "M1751****" | sudo -S ~/healight/projectStuff/scripts/IsServerGoodAndHappy.sh
 @reboot cd ~/healight/healight.green/; npm run sm; wait; pm2 start health.js;
 0 1 * * * /home/mlibre/healight/healight.green/projectStuff/scripts/make-backup.sh
-0 7 * * * node ~/healight/healight.green/realted_projects/TelegramBot/bot.js
-0 7 * * * node ~/healight/healight.green/realted_projects/mediumBot/bot.js
+0 7 * * * node ~/healight/healight.green/related_projectsTelegramBot/bot.js
+0 7 * * * node ~/healight/healight.green/related_projectsmediumBot/bot.js
 0 2 * * * /home/mlibre/healight/healight.green/projectStuff/scripts/git_push.sh
