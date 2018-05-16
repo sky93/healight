@@ -18,7 +18,7 @@ if(typeof process.argv[2] != 'undefined')
 	lang = process.argv[2];
 }
 
-bot = new Tbot(consV.telegram.botId, {pulling: true});
+bot = new Tbot(ups.telegram.apiToken, {pulling: true});
 
 startBot();
 
@@ -146,13 +146,12 @@ async function startBot()
 			await page.addStyleTag({path: __dirname + '/css.css'});				
 			await page.screenshot({path: __dirname + '/pic.png'});
 			await browser.close();
-			bot.sendPhoto(consV.telegram.groupAddress[lang], __dirname + '/pic.png', {caption: 'مقاله ی کامل و بروز را در سایت بخوانید. لینک مقاله:' + firstArtUrl});
+			await bot.sendPhoto(ups.telegram.groupAddress[lang], __dirname + '/pic.png', {caption: 'مقاله ی کامل و بروز را در سایت بخوانید. لینک مقاله:' + firstArtUrl});
 		})();
 	}
 	catch (error)
 	{
 		console.error( new Error(`#Error. message: ${error}`.red) );
-		
 	}
 
 	// Customize art
@@ -183,9 +182,9 @@ async function startBot()
 				res = res + '- ' + firstArtRes[2][key].name[lang] + ' ' + firstArtRes[2][key].family[lang] + '\n';
 			}
 		}
-		res = res + `[برای مطالعه ی کامل مقاله اینجا کلیک کنید.](${firstArtUrl})`;
+		res = res + `[برای مطالعه ی مقاله ی کامل و بروز شده اینجا کلیک کنید.](${firstArtUrl})`;
 		FAText = res;		
-		bot.sendMessage(consV.telegram.groupAddress[lang], FAText, options);	
+		bot.sendMessage(ups.telegram.groupAddress[lang], FAText, options);	
 	});
 
 	// add publeshed art
