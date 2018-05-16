@@ -9,7 +9,12 @@ let ObjectID = require('mongodb').ObjectID;
 let mongoClient = mongodb.MongoClient;
 let db;
 let DbConn;
-let lang = 'fa';
+let lang = consV.site.langs.default;
+if(typeof process.argv[2] != 'undefined')
+{
+	lang = process.argv[2];
+}
+
 let publishMod = 'DRAFT';
 
 // let client = new medium.MediumClient
@@ -152,7 +157,7 @@ async function startBot()
 	
 	// Customize art
 	firstArt.content[lang] = firstArt.content[lang].replace(/\/articles\//g , 'https://' + consV.host.domain + '/articles/');
-	let HTMLArtUrll = `<a href="${firstArtUrl}">برای مطالعه ی کامل مقاله اینجا کلیک کنید</a>`;
+	let HTMLArtUrll = `<a href="${firstArtUrl}">برای مطالعه ی بروز شده و کامل مقاله اینجا کلیک کنید</a>`;
 	firstArt.content[lang] = firstArt.content[lang] + HTMLArtUrll;
 
 	// Post story/art

@@ -1,21 +1,17 @@
+add medium idon to site. create/edit telegramBot.
 blog
-add google+ bot. compelet medium bot. create/edit telegramBot. add medium and google+ icon on footer
-profile sahkhsi
-tabdile sut be matn. ya 20 meliun baraye maghale nevisaye teb sonati va dehkadeye tan dorosti.
 durehaye teb sonati.
-khadamte online. nokatehaye tebi.galley aks
 mahsulat baad eshterak gozari. akhar linkhaye mofid mortabet
 
-add apidoc doc for myself!
+add apidoc doc for myself! masana rahe ezafe kardan yek webservice. ya ezafe kardane mmodal.
 
 blog => zaban har chi yad migiri bezar. vaghti dars midi kamel mifahmi
-
-font ro bayad bekhari
 
 forushgah => amuzesh node, linux, express , ... prestoshop
 
 license tejari fontiran harvaght poroje be avalin daramad resdi
 تبادل لینک با فروش گاه ها در ازای گزاشتن لینک محصولاتشون در دانشنامه
-robate medium
 shomareye telephonet ro az ti site bardar
 Increase Accesibiliy to 100. so everyone can use and like site
+
+add  google+
