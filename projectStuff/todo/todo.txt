@@ -8,7 +8,6 @@ add apidoc doc for myself! masana rahe ezafe kardan yek webservice. ya ezafe kar
 blog => zaban har chi yad migiri bezar. vaghti dars midi kamel mifahmi
 
 forushgah => amuzesh node, linux, express , ... prestoshop
-this link dose not work: https://healight.green/fa///panel/home
 license tejari fontiran harvaght poroje be avalin daramad resdi
 تبادل لینک با فروش گاه ها در ازای گزاشتن لینک محصولاتشون در دانشنامه
 shomareye telephonet ro az ti site bardar

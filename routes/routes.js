@@ -46,14 +46,14 @@ router.use(new RegExp('(\/+)'+langRoutes+'(\/+)stuff(\/+)notTranslated[\/]?$') ,
 router.use(new RegExp('(\/+)'+langRoutes+'(\/+)stuff(\/+)500[\/]?$') , require('./stuff/500'));
 
 // Routing - Panel
-router.use(new RegExp('(\/+)'+langRoutes+'\/panel') , require('./panel/'));
-router.use(new RegExp('(\/+)'+langRoutes+'\/panel\/') , require('./panel/'));
+router.use(new RegExp('(\/+)'+langRoutes+'(\/+)panel') , require('./panel/'));
+router.use(new RegExp('(\/+)'+langRoutes+'(\/+)panel\/') , require('./panel/'));
 
 // Routing - Blog
 // router.use(new RegExp('(\/+)'+langRoutes+'\/blog[\/]') , require('./blog/'));
 
 // Routing - Account
-router.use(new RegExp('(\/+)'+langRoutes+'\/myaccount') , require('./myaccount/'));
+router.use(new RegExp('(\/+)'+langRoutes+'(\/+)myaccount') , require('./myaccount/'));
 
 // 404 happend
 router.use(require('./stuff/404'));
