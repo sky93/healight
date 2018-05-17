@@ -252,7 +252,7 @@ async function url_by_NodeId(node_id , collection)
 			FC_counter--;
 			if(FC_counter == 0)
 			{
-				url.push('https://' + consV.host.domain + '/' + lang + '/encyclopedia');
+				url.push('http://' + consV.host.domain + '/' + lang + '/encyclopedia');
 				url.reverse();
 				url = url.join('/');
 			}

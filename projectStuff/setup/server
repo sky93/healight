@@ -68,7 +68,7 @@ ssh -i .ssh/id_rsa mlibre@185.162.235.230
 
 -------------------------
 
-sudo apt-get install bash-completion git build-essential htop redis-server firewalld libgconf2-* libgtk3* pandoc
+sudo apt-get install bash-completion git build-essential htop redis-server firewalld libgconf2-* libgtk3* pandoc libnss3 libnss3-dev
 sudo chown -R $USER:$(id -gn $USER) /home/mlibre/.config
 sudo systemctl enable redis; sudo systemctl enable redis-server.service
 sudo systemctl enable firewalld
