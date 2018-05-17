@@ -6,7 +6,7 @@ let router = express.Router({mergeParams: true});
 router.route('/')
 .get(function(req , res)
 {
-	let title = 'پنل هیلایت. بلک لیست مقاله های تلگرام';
+	let title = 'پنل هیلایت. بلک لیست مقاله های شبکه های اجتماعی';
 	res.render("panel/adminStuff/nonArtTel",
 	{
 		title: title,
