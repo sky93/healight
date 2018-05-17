@@ -137,7 +137,11 @@ let links = {};
 
 links.sign_out = "/sign/sign_out";
 links.lanPopShow = "/stuff/lanPopShow";
-links.telegram = "https://t.me/healight";
+links.telegram = {};
+links.telegram.fa = "https://t.me/healightFa";
+links.medium = {};
+links.medium.fa = "https://medium.com/healightfa";
+
 exports.links = links;
 /**************************** Pages / Server JS ****************************/
 let pages = {};

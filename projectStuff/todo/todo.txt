@@ -1,4 +1,3 @@
-add medium idon to site. create/edit telegramBot.
 blog
 durehaye teb sonati.
 mahsulat baad eshterak gozari. akhar linkhaye mofid mortabet
@@ -13,4 +12,5 @@ license tejari fontiran harvaght poroje be avalin daramad resdi
 shomareye telephonet ro az ti site bardar
 Increase Accesibiliy to 100. so everyone can use and like site
 
-add  google+
+add tags to bots
+add google+
