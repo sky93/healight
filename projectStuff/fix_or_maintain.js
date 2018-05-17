@@ -200,7 +200,8 @@ exports.createBasicDocuments = function createBasicDocuments()
 			}
 		});
 
-		//social media
+		// *** social media ***//
+		// non art
 		collection = db.collection('social_media');
 		sample =
 		{
@@ -225,7 +226,7 @@ exports.createBasicDocuments = function createBasicDocuments()
 				console.log('Eror');
 			}
 		});
-
+		// medium
 		sample =
 		{
 			'_id': 'medium',
@@ -238,6 +239,34 @@ exports.createBasicDocuments = function createBasicDocuments()
 		collection.findOneAndUpdate
 		({
 			'_id': 'medium'
+		},
+		{
+			$setOnInsert: sample
+		},
+		{
+			returnOriginal: false,
+			upsert: true
+		},
+		function (err, result)
+		{
+			if(err)
+			{
+				console.log('Eror');
+			}
+		});
+		// telegram
+		sample =
+		{
+			'_id': 'telegram',
+			"published_art.fa" :
+			{
+				"397e41c11ed051383873ec50" : {},
+				"397e41c11ed051383873ec51" : {}
+		  	}
+		}
+		collection.findOneAndUpdate
+		({
+			'_id': 'telegram'
 		},
 		{
 			$setOnInsert: sample

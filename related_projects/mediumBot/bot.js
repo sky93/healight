@@ -125,7 +125,6 @@ async function startBot()
 			if(res == null)
 			{
 				console.log(`#Mongo. Can not find any unpublisheed/non-non-art document in ${el} collection`.yellow);
-				// we are done here
 			}
 			else if(res)
 			{
