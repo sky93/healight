@@ -14,8 +14,8 @@ exports.host = host;
 /**************************** Web Site ****************************/
 let site = {};
 
-site.favicon = '/images/favicon.png';
-site.logo = '/images/logo.png';
+site.favicon = '/favicon.png';
+site.logo = '/site/logo.png';
 site.des = "هیلایت، دانشنامه ی طبی و علمی";
 site.enc = {};
 site.enc.des = "همه ی دانشنامه ها . هیلایت";
