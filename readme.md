@@ -1,6 +1,20 @@
-Healight is an encyclopedia generator platform. Written on nodejs & mongo.
-The project is free for non-commercial use. contact us for commercial perposes.
+# Healight, encyclopedia generator platform
+Healight is an powerful encyclopedia generator platform. Healight creates a ready-to-use encyclopedia website in a minute!
+The project is written in Nodejs & Mongodb.
+It is free for non-commercial use.
 
-Successfull examples websits
-====
-https://healight.green/fa/
+## Table of content
++ [Requirements](#requirements)
++ [Installation](#installation)
++ [Todo](#todo)
+
+## Successful examples
++ https://healight.green/fa/
+
+## Requirements
++ Nodejs 9 or higher
+
+# Installation
+
+## Todo
++ Complete English version

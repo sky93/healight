@@ -71,7 +71,6 @@ health.set('view engine' , 'ejs');
 
 // Files
 health.use(express.static('files'));
-health.use(express.static('files/images'));
 health.use(express.static('space'));
 health.use(express.static('space/stuff'));
 
