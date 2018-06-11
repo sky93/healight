@@ -142,22 +142,27 @@ exports.createBasicDocuments = function createBasicDocuments()
 			}
 		});
 		//today article
+		let sampleRoot = database.enc[database.enc.EncsColls[0]].rootObjId;
+		let sampleColl = database.enc[database.enc.EncsColls[0]].CollName;
 		collection = db.collection('site');
 		sample =
 		{
-			node_id: null ,
-			collection: null
+			_id: 'today_article',
 		}
+		consV.site.langs.inArray.forEach( (el , index) =>
+		{
+			sample[el] =
+			{
+				node_id: sampleRoot,
+				collection: sampleColl
+			};
+		});
 		collection.findOneAndUpdate
 		({
 			_id: 'today_article'
 		},
 		{
-			$setOnInsert:
-			{
-				_id: 'today_article',
-				"fa": sample
-			}
+			$setOnInsert: sample
 		},
 		{
 			returnOriginal: false,
