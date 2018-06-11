@@ -3,6 +3,12 @@
 exports.host = {};
 exports.host.ip = "111.111.111.111";
 
+exports.admin = {};
+exports.admin.username = "user";
+exports.admin.password = "pass";
+exports.admin.email = "mail@mail.org";
+exports.admin.lang = "en";
+
 exports.mongo_username = 'mongo_username';
 exports.mongo_password = 'mongo_password';
 exports.mong_dbName = 'dbname';
