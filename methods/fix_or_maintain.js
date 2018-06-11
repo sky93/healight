@@ -55,13 +55,13 @@ exports.createRoots = function createRoots()
 					"owners" : [],
 					"date" : new Date()
 				}
-				consV.site.langs.inArray.forEach( (el , index) =>
+				consV.site.langs.inArray.forEach( (langEl , index) =>
 				{
-					sample['tags'][el] = null;
-					sample['content'][el] = "sample data";
-					sample['treeTitle'][el] = el.name;
-					sample['licenseType'][el] = null;
-					sample['licenseText'][el] = null;
+					sample['tags'][langEl] = null;
+					sample['content'][langEl] = "sample data";
+					sample['treeTitle'][langEl] = el.name;
+					sample['licenseType'][langEl] = null;
+					sample['licenseText'][langEl] = null;
 				});
 				collection.findOneAndUpdate
 				({
