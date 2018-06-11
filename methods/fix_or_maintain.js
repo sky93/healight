@@ -37,34 +37,38 @@ exports.createRoots = function createRoots()
 			if(typeof el.CollName != 'undefined')
 			{
 				let collection = db.collection(el.CollName);
-				let tags = "tags.fa";
-				let content = "content.fa";
-				let treeTitle = "treeTitle.fa";
-				let licenseType = 'license.type';
-				let licenseText = 'license.text';
-				
+
+				let sample =
+				{
+					_id: el.rootObjId,
+					"parent": null,
+					"spaceFolderName": el.rootObjId.valueOf().toString(),
+					"URLName": el.name,
+					"treeTitle" : {},
+					"content" : {},
+					"resources": {},
+					"licenseType" : {},
+					"licenseText" : {},
+					"tags" : {},
+					"approved_by_users": [],
+					"rejected_by_users": {},
+					"owners" : [],
+					"date" : new Date()
+				}
+				consV.site.langs.inArray.forEach( (el , index) =>
+				{
+					sample['tags'][el] = null;
+					sample['content'][el] = "sample data";
+					sample['treeTitle'][el] = el.name;
+					sample['licenseType'][el] = null;
+					sample['licenseText'][el] = null;
+				});
 				collection.findOneAndUpdate
 				({
 					"parent": null
 				},
 				{
-					$setOnInsert:
-					{
-						_id: el.rootObjId,
-						"parent": null,
-						"spaceFolderName": el.rootObjId.valueOf().toString(),
-						"URLName": el.name,
-						[treeTitle]: el.name,
-						[content]: "sample data",
-						[tags]: null,
-						[licenseType]: null,
-						[licenseText]: null,
-						"resources": {},
-						"approved_by_users": [],
-						"rejected_by_users": {},
-						"owners" : [],
-						"date" : new Date()
-					}
+					$setOnInsert: sample
 				},
 				{
 					returnOriginal: false,
@@ -141,9 +145,16 @@ exports.createBasicDocuments = function createBasicDocuments()
 				console.log('Eror');
 			}
 		});
-		//today article
-		let sampleRoot = database.enc[database.enc.EncsColls[0]].rootObjId;
-		let sampleColl = database.enc[database.enc.EncsColls[0]].CollName;
+		//today article		
+		let sampleRoot;
+		let sampleColl;
+		Object.keys(consV.database.enc).forEach(element => {	
+			if(typeof consV.database.enc[element].CollName != 'undefined')
+			{
+				sampleRoot = consV.database.enc[element].rootObjId;
+				sampleColl = consV.database.enc[element].CollName;
+			}
+		});
 		collection = db.collection('site');
 		sample =
 		{

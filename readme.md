@@ -6,6 +6,7 @@ It is free for non-commercial use.
 ## Table of content
 + [Requirements](#requirements)
 + [Installation](#installation)
++ [Important Pages](#important-pages)
 + [Todo](#todo)
 
 ## Successful examples
@@ -24,8 +25,10 @@ It is free for non-commercial use.
 6. Create database: Read `Initiate DataBase` section from [database setup](https://github.com/mlibre/healight/blob/master/projectStuff/setup/database)
 6. Run services: `npm run sm; npm run sr; npm run ss;`
 7. Start project: `npm run ds`
-8. Go to http://localhost:3000/fa/signIn and login
-9. 
+
+## Important Pages
++ http://localhost:3000/en/panel/home
++ http://localhost:3000/en/signIn
 
 ## Todo
 + Complete English version
