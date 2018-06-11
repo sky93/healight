@@ -24,8 +24,8 @@ site.langs = {};
 site.langs.default = 'fa';
 site.langs.fa = {};
 site.langs.fa.name = 'فارسی';
-// site.langs.en = {};
-// site.langs.en.name = 'English';
+site.langs.en = {};
+site.langs.en.name = 'English';
 site.langs.inArray = [];
 
 Object.keys(site.langs).forEach(element => {	
@@ -395,7 +395,7 @@ methods.db.relatedP = rootPath + '/methods/DBRelatedP.js';
 methods.middlewares = rootPath + '/methods/middlewares.js';
 methods.space = rootPath + '/methods/space.js';
 methods.helper = rootPath + '/methods/helper.js';
-methods.fix_or_maintain = rootPath + '/projectStuff/fix_or_maintain.js';
+methods.fix_or_maintain = rootPath + '/methods/fix_or_maintain.js';
 
 exports.methods = methods;
 /**************************** Space ****************************/

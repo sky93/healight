@@ -5,7 +5,6 @@ let DBRelatedP = require( consV.methods.db.relatedP );
 let DBArticles = require( consV.methods.db.articles );
 let DBProfile = require( consV.methods.db.profile );
 let space = require( consV.methods.space );
-let ObjectID = require('mongodb').ObjectID;
 let async = require('async');
 let request = require('request');
 let hashes = require('jshashes');
@@ -38,8 +37,6 @@ exports.createRoots = function createRoots()
 			if(typeof el.CollName != 'undefined')
 			{
 				let collection = db.collection(el.CollName);
-				let root_id = DBMain.root_id_by_coll_name(el.CollName); // in dg lazen nist tabe farakhani kni. tu khude el.rootId hast.
-				let root_Obid = new ObjectID(root_id);
 				let tags = "tags.fa";
 				let content = "content.fa";
 				let treeTitle = "treeTitle.fa";
@@ -53,9 +50,9 @@ exports.createRoots = function createRoots()
 				{
 					$setOnInsert:
 					{
-						_id: root_Obid,
+						_id: el.rootObjId,
 						"parent": null,
-						"spaceFolderName": root_id,
+						"spaceFolderName": el.rootObjId.valueOf().toString(),
 						"URLName": el.name,
 						[treeTitle]: el.name,
 						[content]: "sample data",
@@ -95,7 +92,7 @@ exports.createRoots = function createRoots()
 			}
 			else
 			{
-				console.warn('#Fix||Maintain. Root Arts added'.yellow);
+				console.warn('#Fix||Maintain. Root Arts added. u can comment this function now'.yellow);
 			}
 		});
 	});
@@ -115,7 +112,10 @@ exports.createBasicDocuments = function createBasicDocuments()
 		}
 		let data = {};
 		data['_id'] = 'slideshows';
-		data["home.fa"] = [sample]
+		consV.site.langs.inArray.forEach( (el , index) =>
+		{
+			data["home." + el] = [sample];
+		});
 		Object.keys(consV.database.enc).forEach(element => {	
 			if(typeof consV.database.enc[element].CollName != 'undefined')
 			{

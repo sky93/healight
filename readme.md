@@ -1,5 +1,5 @@
 # Healight, encyclopedia generator platform
-Healight is an powerful encyclopedia generator platform. Healight creates a ready-to-use encyclopedia website in a minute!
+Healight is an powerful encyclopedia generator platform. Healight creates ready-to-use encyclopedia website in a minute!
 The project is written in Nodejs & Mongodb.
 It is free for non-commercial use.
 
@@ -21,7 +21,8 @@ It is free for non-commercial use.
 4. `sudo npm install nodemon -g`
 5. Rename `UsPs.js.example` to `UsPs.js`. and fill the fields.
 6. Create database: Read `Initiate DataBase` section from [./projectStuff/setup/database](database setup)
-6. Run services: `npm run sm; npm run sr; npm run ss; npm run ds`
+6. Run services: `npm run sm; npm run sr; npm run ss;`
+7. Start project: `npm run ds`
 
 ## Todo
 + Complete English version

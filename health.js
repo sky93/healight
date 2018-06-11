@@ -85,10 +85,10 @@ health.use( cookie_parser() );
 mongo.db_connect(function ()
 {
 	// Fix Or Maintain
-	// fix_maintain.createColls();
-	// fix_maintain.createBasicDocuments();
+	fix_maintain.createColls();
+	fix_maintain.createRoots();
+	fix_maintain.createBasicDocuments();
 	// fix_maintain.signUpAdmin("mlibre" , "m.gh@linuxmail.org" , "masoudsam" , "fa");
-	// fix_maintain.createRoots();
 	// fix_maintain.addAdminAsOwnerToAllArts();
 	// fix_maintain.isEveryArticleHaveItsFolder();
 	// fix_maintain.deleteOrphanFolders();
