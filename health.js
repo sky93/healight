@@ -11,11 +11,10 @@ let redis_store = require('connect-redis')(session);
 let cookie_parser = require('cookie-parser');
 let mongo = require(consV.methods.db.main);
 global.i18n = require('i18n');
-let path = require('path');
 let helper = require(consV.methods.helper);
 let ejs = require('ejs'); // Create Client Javascript Files.
 let fix_maintain = require(consV.methods.fix_or_maintain); // Fixing Stuff 
-let colors = require('colors'); // Probablly Just For Developing
+let ups = require('../UsPs');
 
 // Client Javascript Files.
 let list = helper.directoryListRecursive('./files/js/eJS/');
@@ -88,7 +87,7 @@ mongo.db_connect(function ()
 	fix_maintain.createColls();
 	fix_maintain.createRoots();
 	fix_maintain.createBasicDocuments();
-	// fix_maintain.signUpAdmin("mlibre" , "m.gh@linuxmail.org" , "masoudsam" , "fa");
+	fix_maintain.signUpAdmin(ups.admin.username , ups.admin.email , ups.admin.password , ups.admin.lang);
 	// fix_maintain.addAdminAsOwnerToAllArts();
 	// fix_maintain.isEveryArticleHaveItsFolder();
 	// fix_maintain.deleteOrphanFolders();
