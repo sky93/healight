@@ -1,5 +1,5 @@
 =========================
-Initize DataBase
+Initiate Database
 =========================
 mkdir database
 cd database
@@ -31,7 +31,7 @@ db.createUser(
 Ctrl + D; fg; Ctrl + C;
 
 ==========================
-indexing DataBase
+indexing Database
 ==========================
 indexing:
 db.encyclopedia_medicine.createIndex( {parent: 1} )
@@ -39,7 +39,7 @@ db.users.createIndex( {username: 1} )
 db.users.createIndex( {email: 1} )
 
 =========================
-Running DataBase
+Running Database
 =========================
 mongod --auth --port 27017 --dbpath=. &> /dev/null &
 mongo --port 27017 -u "mlibre" -p "M17511752gh*M17511752gh" --authenticationDatabase "health"
