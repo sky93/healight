@@ -7,9 +7,7 @@ router.route('/')
 .all(function(req , res)
 {
 	//detect lan and redirect
-	// if lang == fa
-	res.redirect('/fa/home');
-	// else ...
+	res.redirect('/' + consV.site.langs.default + '/home');
 });
 
 module.exports = router;

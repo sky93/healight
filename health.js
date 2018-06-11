@@ -13,8 +13,9 @@ let mongo = require(consV.methods.db.main);
 global.i18n = require('i18n');
 let helper = require(consV.methods.helper);
 let ejs = require('ejs'); // Create Client Javascript Files.
+let colors = require('colors');
 let fix_maintain = require(consV.methods.fix_or_maintain); // Fixing Stuff 
-let ups = require('../UsPs');
+let ups = require('./UsPs');
 
 // Client Javascript Files.
 let list = helper.directoryListRecursive('./files/js/eJS/');

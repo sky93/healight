@@ -15,7 +15,9 @@ db.createUser(
 			 {role: 'userAdminAnyDatabase' , db:'admin'} ]
 });
 
-Ctrl + D; fg; Ctrl + C;
+Ctrl + D;
+fg;
+Ctrl + C;
 
 mongod --auth --port 27017 --dbpath=. &> /dev/null &
 mongo --port 27017 -u "admin" -p "M17511752gh*M17511752gh" --authenticationDatabase "admin"
@@ -29,6 +31,7 @@ db.createUser(
 });
 
 Ctrl + D; fg; Ctrl + C;
+cd ..
 
 ==========================
 indexing Database
