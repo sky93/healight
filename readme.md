@@ -14,7 +14,7 @@ It is free for non-commercial use.
 ## Requirements
 + Nodejs 9 or higher
 
-# Installation
+## Installation
 1. `git clone https://github.com/mlibre/healight.git`
 2. `cd healight`
 3. `npm install`
