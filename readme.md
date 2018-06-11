@@ -12,6 +12,7 @@ It is free for non-commercial use.
 + https://healight.green/fa/
 
 ## Requirements
++ Linux
 + Nodejs 9 or higher
 
 ## Installation
