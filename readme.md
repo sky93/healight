@@ -20,7 +20,7 @@ It is free for non-commercial use.
 3. `npm install`
 4. `sudo npm install nodemon -g`
 5. Rename `UsPs.js.example` to `UsPs.js`. and fill the fields.
-6. Create database: Read `Initiate DataBase` section from [./projectStuff/setup/database](database setup)
+6. Create database: Read `Initiate DataBase` section from [database setup](https://github.com/mlibre/healight/blob/master/projectStuff/setup/database)
 6. Run services: `npm run sm; npm run sr; npm run ss;`
 7. Start project: `npm run ds`
 
